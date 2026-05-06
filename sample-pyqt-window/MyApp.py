@@ -13,18 +13,19 @@ class MainWindow(QMainWindow):
     def __init__(self):
 
         super().__init__()
-        self.setWindowTitle("Emran Test")
         self.button_was_checked = True
 
-        button = QPushButton("Click Now")
-        button.setCheckable(True)
-        button.clicked.connect(self.button_was_toggled)
-        button.setChecked(self.button_was_checked)
+        self.setWindowTitle("Emran Test")
 
-        self.setCentralWidget(button)
+        self.button = QPushButton("Click Now")
+        self.button.setCheckable(True)
+        self.button.released.connect(self.the_button_was_released)
+        self.button.setChecked(self.button_was_checked)
 
-    def button_was_toggled(self, checked):
-        self.button_was_checked = checked
+        self.setCentralWidget(self.button)
+
+    def the_button_was_released(self):
+        self.button_was_checked = self.button.isChecked()
         print(self.button_was_checked)
 
 
