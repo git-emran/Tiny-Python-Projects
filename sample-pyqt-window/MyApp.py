@@ -5,26 +5,32 @@ from PyQt6.QtCore import QSize, Qt
 from PyQt6.QtWidgets import (
     QApplication,
     QMainWindow,
-    QPushButton,
+    QLabel,
+    QLineEdit,
+    QVBoxLayout,
+    QWidget,
 )
 
 
 class MainWindow(QMainWindow):
     def __init__(self):
-
         super().__init__()
 
         self.setWindowTitle("Emran Test")
-        self.button = QPushButton("Click Me")
-        self.button.clicked.connect(self.the_button_was_clicked)
 
-        self.setCentralWidget(self.button)
+        self.label = QLabel()
+        self.input = QLineEdit()
 
-    def the_button_was_clicked(self):
-        self.button.setText("I have been clicked too many Times!")
-        self.button.setEnabled(False)
+        self.input.textChanged.connect(self.label.setText)
 
-        self.setWindowTitle("My OneShot app")
+        layout = QVBoxLayout()
+        layout.addWidget(self.input)
+        layout.addWidget(self.label)
+
+        container = QWidget()
+        container.setLayout(layout)
+
+        self.setCentralWidget(container)
 
 
 app = QApplication(sys.argv)
