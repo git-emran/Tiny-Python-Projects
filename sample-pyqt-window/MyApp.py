@@ -1,7 +1,6 @@
 import sys
 
-from PyQt6.QtCore import QSize, Qt
-
+from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import (
     QApplication,
     QMainWindow,
@@ -35,7 +34,7 @@ class MainWindow(QMainWindow):
 
 app = QApplication(sys.argv)
 
-winddow = MainWindow()
-winddow.show()
+window = MainWindow()
+window.show()
 
 app.exec()
