@@ -43,27 +43,37 @@ class MainWindow(QMainWindow):
         self.setCentralWidget(container)
 
     def get_an_int(self):
-        my_int_value, ok = QInputDialog.getInt(self, "Get an Int", "Enter a number")
-        print("Result", ok, my_int_value)
+        dialog = QInputDialog(self)
+        dialog.setWindowTitle("Enter an Integer")
+        dialog.setLabelText("Type your Integer here")
+        dialog.setIntValue(0)
+        dialog.setIntMinimum(-5)
+        dialog.setIntMaximum(5)
+        dialog.setIntStep(1)
+        ok = dialog.exec()
+        print("Result:", ok, dialog.intValue())
 
     def get_a_float(self):
-        title = "Enter a float"
-        label = "Type your float here"
-
-        my_float_value, ok = QInputDialog.getDouble(
-            self, title, label, value=0, min=5.3, max=5.7, decimals=2
-        )
-        print("Result:", ok, my_float_value)
+        dialog = QInputDialog(self)
+        dialog.setWindowTitle("Enter a Float")
+        dialog.setLabelText("Type your float here")
+        dialog.setDoubleValue(0.1)
+        dialog.setDoubleMinimum(-5.3)
+        dialog.setDoubleMaximum(5.7)
+        dialog.setDoubleStep(1.4)
+        dialog.setDoubleDecimals(2)
+        ok = dialog.exec()
+        print("Result:", ok, dialog.doubleValue())
 
     def get_a_str_from_a_list(self):
-        title = "Select a String"
-        label = "Select a fruit from the list"
-        items = ["apple", "pear", "orange", "grape"]
-        inital_selection = 2
-        my_selected_str, ok = QInputDialog.getItem(
-            self, title, label, items, current=inital_selection, editable=False
-        )
-        print("Result:", ok, my_selected_str)
+        dialog = QInputDialog(self)
+        dialog.setWindowTitle("Select a string")
+        dialog.setLabelText("Select a Fruit from the list")
+        dialog.setComboBoxItems(["apple", "pear", "orange", "grape"])
+        dialog.setComboBoxEditable(False)
+        dialog.setTextValue("orange")
+        ok = dialog.exec()
+        print("Result:", ok, dialog.textValue())
 
     def get_a_str(self):
         title = "Enter a string"
