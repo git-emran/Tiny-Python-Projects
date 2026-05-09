@@ -1,11 +1,10 @@
-import sys
 import json
 import os
 
 from PyQt6 import uic
 from PyQt6.QtCore import QAbstractListModel, Qt
 from PyQt6.QtGui import QImage
-from PyQt6.QtWidgets import QApplication, QMainWindow
+from PyQt6.QtWidgets import QMainWindow
 
 
 basedir = os.path.dirname(__file__)
@@ -67,7 +66,7 @@ class TodoModel(QAbstractListModel):
         self._save()
 
 
-class MainWindow(QMainWindow):
+class MainWindow(QMainWindow, MainWindowUI):
     def __init__(self):
         super().__init__()
         self.ui = MainWindowUI()
@@ -95,9 +94,3 @@ class MainWindow(QMainWindow):
             index = indexes[0]
             self.model.complete(index.row())
             self.ui.todoView.clearSelection()
-
-
-app = QApplication(sys.argv)
-window = MainWindow()
-window.show()
-app.exec()
