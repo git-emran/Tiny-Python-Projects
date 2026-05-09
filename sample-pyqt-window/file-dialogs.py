@@ -31,7 +31,7 @@ class MainWindow(QMainWindow):
         layout.addWidget(button1)
 
         button2 = QPushButton("Open Files")
-        button2.clicked.connect(self.get_filename)
+        button2.clicked.connect(self.get_filenames)
         layout.addWidget(button2)
 
         container = QWidget()
@@ -49,6 +49,25 @@ class MainWindow(QMainWindow):
         )
 
         print("Result:", filename, selected_filter)
+
+    def get_filenames(self):
+        caption = "Open Files"
+        initial_dir = ""
+        initial_filter = FILE_FILTERS[1]
+        dialog = QFileDialog()
+        dialog.setWindowTitle(caption)
+        dialog.setDirectory(initial_dir)
+        dialog.setNameFilters(FILE_FILTERS)
+        dialog.selectNameFilter(initial_filter)
+        dialog.setFileMode(QFileDialog.FileMode.ExistingFiles)
+
+        ok = dialog.exec()
+        print(
+            "Result: ",
+            ok,
+            dialog.selectedFiles(),
+            dialog.selectNameFilter(),
+        )
 
 
 app = QApplication(sys.argv)
