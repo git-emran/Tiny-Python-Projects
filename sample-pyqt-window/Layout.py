@@ -1,6 +1,5 @@
 import sys
 
-
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import (
     QApplication,
@@ -20,6 +19,7 @@ class MainWindow(QMainWindow):
         super().__init__()
 
         self.setWindowTitle("Emran's Test")
+
 
         pagelayout = QVBoxLayout()
         button_layout = QHBoxLayout()
